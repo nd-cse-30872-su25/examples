@@ -10,22 +10,22 @@ LEFT_PBB  = ('(', '[', '{')
 RIGHT_PBB = (')', ']', '}')
 
 def is_pbbmatched(s: str) -> bool:
-    left = []
+    stack = []
 
-    for c in s:
-        if c in LEFT_PBB:               # Push left PBB
-            left.append(c)
+    for symbol in s:
+        if symbol in LEFT_PBB:          # Push stack PBB
+            stack.append(symbol)
         else:
-            if not left:                # Nothing left to complete match
+            try:
+                top = stack.pop()
+            except IndexError:          # Nothing stack to complete match
                 return False
 
-            index = RIGHT_PBB.index(c)  # Make sure we have a match
-            if index >= 0 and left[-1] != LEFT_PBB[index]:
+            # Make sure we have a match
+            if LEFT_PBB.index(top) != RIGHT_PBB.index(symbol):
                 return False
 
-            left.pop(-1)
-
-    return not left
+    return not stack
 
 # Main execution
 
