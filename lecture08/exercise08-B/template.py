@@ -44,8 +44,9 @@ def main() -> None:
         except ValueError:
             break
 
-        grid = read_grid(n)
-        print(hunt_squirrels(grid, n))
+        grid  = read_grid(n)
+        table = hunt_squirrels(grid, n)
+        print(table[n][n])
 
 if __name__ == '__main__':
     main()

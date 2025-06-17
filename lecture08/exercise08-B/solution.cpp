@@ -28,7 +28,7 @@ Grid read_grid(size_t n) {
     return grid;
 }
 
-Table compute_table(Grid &grid) {
+Table hunt_squirrels(Grid &grid) {
     // 1. Initialize table
     Table table(grid.size(), Row(grid[0].size()));
 
@@ -43,6 +43,8 @@ Table compute_table(Grid &grid) {
     	    );
 	}
     }
+
+    // 3. Use table result
     return table;
 }
 
@@ -75,10 +77,10 @@ int main(int argc, char *argv[]) {
 
     while (cin >> n) {
     	auto grid  = read_grid(n);
-    	auto table = compute_table(grid);
+    	auto table = hunt_squirrels(grid);
 
     	cout << table[n][n] << endl;
-    	
+
     	/*
     	auto path  = find_path(grid, n, table);
     	cout << "[" << path[0];
