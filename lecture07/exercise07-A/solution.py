@@ -7,17 +7,17 @@ import sys
 # Functions
 
 def readline() -> list[int]:
-    return sorted(map(int, sys.stdin.readline().split()), reverse=True)
+    return sorted(map(int, sys.stdin.readline().split()))
 
 def feed_children(children: list[int], cookies: list[int]) -> int:
     count = 0
 
     while cookies and children:
-        child  = children.pop(0)
-        cookie = cookies[0]
+        child  = children.pop()
+        cookie = cookies[-1]
 
-        if child <= cookie:
-            cookies.pop(0)
+        if cookie >= child:
+            cookies.pop()
             count += 1
 
     return count
