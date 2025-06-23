@@ -9,10 +9,11 @@ COINS = (1, 3, 4)
 # Functions
 
 def compute_table(n: int, coins: tuple[int]=COINS) -> list[int]:
-    # Initialize table to 0's
-    table = [0] * (n + 1)
+    # Initialize table to n's
+    table = [n] * (n + 1)
 
     # Initialize base cases (ie. coins)
+    table[0] = 0
     for coin in coins:
         table[coin] = 1
 
@@ -32,6 +33,7 @@ def compute_table_forward(n: int, coins: tuple[int]=COINS) -> list[int]:
     table = [n] * (n + 1)
 
     # Initialize base cases (ie. coins)
+    table[0] = 0
     for coin in coins:
         table[coin] = 1
 
