@@ -22,9 +22,13 @@ vector<int> compute_table(size_t n, vector<int> &coins) {
     // For each entry i in table, generate successive values:
     //
     //	table[i + coin] = min(table[i] + 1, table[i + coin])
-    for (size_t i = 1; i < (n - *max_element(coins.begin(), coins.end())); i++) {
+    for (size_t i = 1; i < n; i++) {
     	for (auto coin : coins) {
-    	    table[i + coin] = min(table[i] + 1, table[i + coin]);
+	    try {
+		table.at(i + coin) = min(table[i] + 1, table.at(i + coin));
+	    } catch (out_of_range &e) {
+	    	continue;
+	    }
 	}
     }
 
